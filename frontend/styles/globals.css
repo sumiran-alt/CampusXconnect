@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1f2937;
+  line-height: 1.6;
+  background-color: #ffffff;
+}
+
+code {
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/* Typography System */
+@layer base {
+  /* Hero Headings - H1 */
+  h1 {
+    @apply font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #0f172a;
+  }
+
+  /* Section Headings - H2 */
+  h2 {
+    @apply font-semibold text-2xl md:text-3xl lg:text-4xl tracking-tight;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #0f172a;
+  }
+
+  /* Subsection Headings - H3 */
+  h3 {
+    @apply font-semibold text-xl md:text-2xl;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1f2937;
+  }
+
+  /* Smaller Headings - H4 */
+  h4 {
+    @apply font-semibold text-lg md:text-xl;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #1f2937;
+  }
+
+  /* Body Text */
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #4b5563;
+  }
+
+  /* Links */
+  a {
+    @apply font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200;
+    font-weight: 500;
+  }
+
+  /* Lists */
+  ul, ol {
+    @apply ml-6 mb-4;
+  }
+
+  li {
+    @apply mb-2 text-base leading-relaxed;
+    font-weight: 400;
+  }
+}
+
+/* Component Typography Styles */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply font-semibold text-sm md:text-base px-4 md:px-6 py-2 md:py-3 rounded-full transition-all duration-200 cursor-pointer;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary {
+    @apply btn bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gray-100 text-gray-900 hover:bg-gray-200;
+  }
+
+  /* Navigation Text */
+  .nav-link {
+    @apply font-medium text-sm md:text-base text-gray-700 hover:text-blue-600 transition-colors duration-200;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* Badge/Label */
+  .badge {
+    @apply font-semibold text-xs md:text-sm px-3 py-1 rounded-full;
+    font-weight: 600;
+  }
+
+  /* Card Title */
+  .card-title {
+    @apply font-semibold text-lg md:text-xl text-gray-900;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Small Text / Secondary */
+  .text-secondary {
+    @apply text-sm md:text-base text-gray-600;
+    font-weight: 400;
+  }
+
+  /* Caption / Micro Text */
+  .text-caption {
+    @apply text-xs md:text-sm text-gray-500;
+    font-weight: 400;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive Typography Adjustments */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h2 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply text-sm md:text-base leading-relaxed;
+  }
+}
+
+/* Font Loading Optimization */
+@font-face {
+  font-family: 'Inter Var';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap')
+    format('woff2-variations');
+}
