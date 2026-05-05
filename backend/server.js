@@ -67,15 +67,34 @@ app.use("/api/resume", require("./routes/resume"));
 app.use("/api/hackathons", require("./routes/hackathons"));
 app.use("/api/communities", require("./routes/communities"));
 
+// Root route
+app.get("/", (req, res) => {
+  res.json({ 
+    message: "CampusXConnect Backend is Running! 🚀",
+    status: "Online",
+    version: "1.0.0",
+    endpoints: {
+      health: "/api/health",
+      auth: "/api/auth",
+      users: "/api/users",
+      posts: "/api/posts",
+      messaging: "/api/private-messages",
+      connections: "/api/connections",
+      coding: "/api/coding",
+      notifications: "/api/notifications"
+    }
+  });
+});
+
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "Backend is running!" });
 });
 
 // Start server
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Socket.io initialized and listening for connections`);
 });
