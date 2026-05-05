@@ -10,15 +10,15 @@ COPY package*.json ./
 RUN npm install '--omit=dev'
 
 # Runtime stage
-FROM node:18-alpine
+# FROM node:18-alpine
 
 WORKDIR /app
 
 # Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init
+# RUN apk add --no-cache dumb-init
 
 # Copy from builder
-COPY --from=builder /app/node_modules ./node_modules
+# COPY --from=builder /app/node_modules ./node_modules
 
 # Copy application files
 COPY . .
