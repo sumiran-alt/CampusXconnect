@@ -7,12 +7,12 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install '--omit=dev'
+RUN npm install --omit=dev
 
 # Runtime stage
 # FROM node:18-alpine
 
-WORKDIR /app
+# WORKDIR /app
 
 # Install dumb-init for proper signal handling
 # RUN apk add --no-cache dumb-init
@@ -30,8 +30,8 @@ RUN mkdir -p uploads
 EXPOSE 5000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:5000/api/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
+# HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+#   CMD node -e "require('http').get('http://localhost:5000/api/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
 
 # Start the application
-CMD ["dumb-init", "node", "server.js"]
+CMD ["node", "server.js"]
