@@ -6,9 +6,17 @@ const activeUsers = new Map();
 
 // Initialize Socket.io
 const initSocket = (server) => {
+  // Parse allowed origins from environment variable or use defaults
+  const allowedOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',')
+    : [
+        process.env.FRONTEND_URL || "http://localhost:3000",
+        "http://localhost:3001"
+      ];
+  
   const io = new Server(server, {
     cors: {
-      origin: process.env.FRONTEND_URL || ["http://localhost:3000", "http://localhost:3001"],
+      origin: allowedOrigins,
       methods: ["GET", "POST"],
       credentials: true,
     },
