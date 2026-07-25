@@ -15,7 +15,6 @@ export default function CreatePost() {
     description: "",
     techStack: "",
     githubLink: "",
-    privacy: "public", // NEW: Add privacy with default value
   });
 
   if (!isAuthenticated) {
@@ -50,7 +49,6 @@ export default function CreatePost() {
           .map((t) => t.trim())
           .filter(Boolean),
         githubLink: formData.githubLink,
-        privacy: formData.privacy, // NEW: Include privacy setting
       };
 
       await postAPI.createPost(postData);
@@ -126,22 +124,6 @@ export default function CreatePost() {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
               placeholder="https://github.com/username/repo"
             />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">
-              Privacy Settings
-            </label>
-            <select
-              name="privacy"
-              value={formData.privacy}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-            >
-              <option value="public">🌍 Public - Visible to everyone</option>
-              <option value="connections">🔗 Connections Only - Visible to your connections</option>
-              <option value="private">🔒 Private - Only you can see</option>
-            </select>
           </div>
 
           <div className="flex gap-4">

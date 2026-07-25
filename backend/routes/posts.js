@@ -9,23 +9,19 @@ const {
   getComments,
   deletePost,
   updatePost,
-  getUserPosts,
-  getUserPostsById,
 } = require("../controllers/postController");
-const { protect } = require("../middleware/auth");
+const authMiddleware = require("../middleware/auth");
 
 const router = express.Router();
 
-router.post("/createPost", protect, createPost);
-router.get("/my-posts", protect, getUserPosts);
-router.get("/user/:userId", getUserPostsById);
+router.post("/createPost", authMiddleware, createPost);
 router.get("/feed", getFeed);
-router.post("/like/:id", protect, likePost);
-router.post("/unlike/:id", protect, unlikePost);
-router.post("/comment/:id", protect, commentOnPost);
-router.get("/comments/:id", protect, getComments);
-router.delete("/:id", protect, deletePost);
-router.put("/:id", protect, updatePost);
 router.get("/:id", getPostById);
+router.post("/like/:id", authMiddleware, likePost);
+router.post("/unlike/:id", authMiddleware, unlikePost);
+router.post("/comment/:id", authMiddleware, commentOnPost);
+router.get("/comments/:id", getComments);
+router.delete("/:id", authMiddleware, deletePost);
+router.put("/:id", authMiddleware, updatePost);
 
 module.exports = router;

@@ -5,19 +5,15 @@ const {
   getUserById,
   followUser,
   unfollowUser,
-  completeProfileSetup,
-  setUserType,
 } = require("../controllers/userController");
-const { protect } = require("../middleware/auth");
+const authMiddleware = require("../middleware/auth");
 
 const router = express.Router();
 
-router.get("/profile", protect, getProfile);
-router.put("/user-type", protect, setUserType);
-router.put("/profile/complete", protect, completeProfileSetup);
-router.put("/profile/update", protect, updateProfile);
+router.get("/profile", authMiddleware, getProfile);
+router.put("/profile/update", authMiddleware, updateProfile);
 router.get("/:id", getUserById);
-router.post("/follow/:id", protect, followUser);
-router.post("/unfollow/:id", protect, unfollowUser);
+router.post("/follow/:id", authMiddleware, followUser);
+router.post("/unfollow/:id", authMiddleware, unfollowUser);
 
 module.exports = router;

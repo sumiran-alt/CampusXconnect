@@ -50,11 +50,8 @@ export default function Signup() {
 
       setAuth(user, token);
 
-      // Clear form data
-      setFormData({ name: "", email: "", password: "", confirmPassword: "" });
-
       toast.success("Signup successful!");
-      router.push("/onboarding");
+      router.push("/profile");
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed");
     } finally {
@@ -77,7 +74,6 @@ export default function Signup() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your full name"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
               required
             />
@@ -92,7 +88,6 @@ export default function Signup() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
               required
             />
@@ -107,7 +102,6 @@ export default function Signup() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Create a strong password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
               required
             />
@@ -122,7 +116,6 @@ export default function Signup() {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              placeholder="Confirm your password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
               required
             />
@@ -140,10 +133,10 @@ export default function Signup() {
         <p className="text-center text-gray-600 mt-4">
           Already have an account?{" "}
           <Link
-            href="/auth"
+            href="/login"
             className="text-primary font-semibold hover:underline"
           >
-            Sign In
+            Login
           </Link>
         </p>
       </div>

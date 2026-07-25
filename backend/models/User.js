@@ -22,23 +22,6 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  role: {
-    type: String,
-    enum: ["user", "admin"],
-    default: "user",
-  },
-  isActive: {
-    type: Boolean,
-    default: true,
-  },
-  otp: {
-    type: String,
-    default: null,
-  },
-  otpExpiry: {
-    type: Date,
-    default: null,
-  },
   profilePicture: {
     type: String,
     default: "https://via.placeholder.com/150",
@@ -47,50 +30,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "Dronacharya Group of Institutions",
   },
-  degree: {
-    type: String,
-    enum: {
-      values: [null, "B.Tech", "MBA", "BCA", "B.Sc", "M.Tech", "M.Sc", "B.A", "M.A", "B.Com", "M.Com", "Other"],
-      message: "Please select a valid degree"
-    },
-    default: null,
-  },
   branch: {
     type: String,
-    enum: {
-      values: [null, "CSE", "ECE", "ME", "CIVIL", "EE", "IT", "BT", "CS-DS", "CSIT", "AIML", "ECZ", "Other"],
-      message: "Please select a valid branch"
-    },
-    default: null,
+    enum: ["CSE", "ECE", "ME", "CIVIL", "EE", "IT", "BT"],
+    default: "CSE",
   },
   year: {
     type: Number,
-    enum: {
-      values: [null, 1, 2, 3, 4],
-      message: "Please select a valid year"
-    },
-    default: null,
-  },
-  userType: {
-    type: String,
-    enum: {
-      values: [null, "student", "alumni"],
-      message: "Please select a valid user type"
-    },
-    default: null,
-  },
-  passoutYear: {
-    type: Number,
-    default: null,
-  },
-  jobRole: {
-    type: String,
-    default: "",
-  },
-  interests: [{ type: String }],
-  profileCompletionStatus: {
-    type: Boolean,
-    default: false,
+    enum: [1, 2, 3, 4],
+    default: 1,
   },
   skills: [{ type: String }],
   bio: {
@@ -117,20 +65,6 @@ const userSchema = new mongoose.Schema({
       ref: "User",
     },
   ],
-  connections: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
-  rollNumber: {
-    type: String,
-    default: "",
-  },
-  company: {
-    type: String,
-    default: "",
-  },
   createdAt: {
     type: Date,
     default: Date.now,

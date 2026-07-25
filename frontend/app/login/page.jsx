@@ -30,7 +30,6 @@ export default function Login() {
     setLoading(true);
 
     try {
-      // Try user login first
       const response = await authAPI.login({
         email: formData.email,
         password: formData.password,
@@ -43,17 +42,8 @@ export default function Login() {
 
       setAuth(user, token);
 
-      // Clear form data
-      setFormData({ email: "", password: "" });
-
       toast.success("Login successful!");
-
-      // Redirect based on role
-      if (user.role === "admin") {
-        router.push("/admin/dashboard");
-      } else {
-        router.push("/feed");
-      }
+      router.push("/feed");
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
     } finally {
@@ -76,7 +66,6 @@ export default function Login() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
               required
             />
@@ -91,7 +80,6 @@ export default function Login() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Enter your password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
               required
             />
@@ -106,20 +94,15 @@ export default function Login() {
           </button>
         </form>
 
-        <div className="flex justify-between items-center mt-4 text-sm">
+        <p className="text-center text-gray-600 mt-4">
+          Don't have an account?{" "}
           <Link
             href="/signup"
             className="text-primary font-semibold hover:underline"
           >
             Sign up
           </Link>
-          <Link
-            href="/forgot-password"
-            className="text-red-600 font-semibold hover:underline"
-          >
-            Forgot Password?
-          </Link>
-        </div>
+        </p>
       </div>
     </div>
   );

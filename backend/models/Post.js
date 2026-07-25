@@ -38,12 +38,6 @@ const postSchema = new mongoose.Schema({
       ref: "User",
     },
   ],
-  privacy: {
-    type: String,
-    enum: ["public", "private", "connections"],
-    default: "public",
-    description: "public: visible to all, private: only author, connections: visible to connections only",
-  },
   createdAt: {
     type: Date,
     default: Date.now,
